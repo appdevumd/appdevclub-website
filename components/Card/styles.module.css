@@ -1,0 +1,8 @@
+.card {
+    background: while;
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+    background-color: white;
+    border-radius: 20px;
+    /* box-shadow: 0 0 5px black; */
+}

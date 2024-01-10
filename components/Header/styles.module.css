@@ -2,6 +2,7 @@
     background: var(--blue);
     padding: 2rem;
     border-radius: 20px;
+    margin-bottom: 2rem;
 }
 
 .header * {
