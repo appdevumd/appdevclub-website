@@ -1,0 +1,34 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+:root {
+    --blue: #0887FF;
+    --purple: #925FE2;
+    font-size: 16px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    background: var(--blue);
+}
+
+main {
+    max-width: 1024px;
+    background-color: white;
+    flex: 1;
+    min-height: 100vh;
+}
+
+.btn {
+    text-decoration: none;
+    background: var(--purple);
+    padding: 0.25rem 0.75rem;
+    font-weight: 600;
+    font-size: 1rem;
+    border: none;
+    border-radius: 20px;
+}
