@@ -10,17 +10,23 @@
     font-size: 16px;
 }
 
-body {
+html {
     display: flex;
     justify-content: center;
     background: var(--blue);
 }
 
-main {
+body {
     max-width: 1024px;
     background-color: white;
     flex: 1;
     min-height: 100vh;
+    display: flex;
+    padding: 2rem;
+}
+
+main {
+    flex: 1;
 }
 
 .btn {

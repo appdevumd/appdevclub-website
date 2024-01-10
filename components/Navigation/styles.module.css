@@ -1,0 +1,24 @@
+.nav {
+    background: var(--blue);
+    padding: 2rem;
+    margin-right: 2rem;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav * {
+    color: white;
+}
+
+.logo {
+    height: 10rem;
+    margin-bottom: 0.5rem;
+}
+
+.nav a {
+    text-decoration: none;
+    /* font-weight: 600; */
+    display: flex;
+    margin: 0.5rem;
+}
