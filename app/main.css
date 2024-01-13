@@ -47,6 +47,6 @@ main {
 hr {
     border: none;
     height: 0;
-    border-top: var(--text) 1px solid;
-    margin: 0.5rem 0;
+    border-top: whitesmoke 2px solid;
+    margin: 0.75rem 0;
 }

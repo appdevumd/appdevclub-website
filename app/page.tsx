@@ -1,8 +1,23 @@
 import Card from "@/components/Card";
 import styles from "./page.module.css";
 import Header from "@/components/Header";
+import { api } from "@/utils/api";
+import SponsorCard from "@/components/SponsorCard";
 
-export default function Page() {
+export const getData = async () => {
+    const res = await api.get("?target=sponsors");
+    const sponsors: ({
+        name: string;
+        tier: string;
+        logo: string;
+    })[] = await res.json();
+
+    return { sponsors };
+}
+
+export default async function Page() {
+    const { sponsors } = await getData();
+
     return (
         <main>
             <Header>
@@ -34,6 +49,15 @@ export default function Page() {
                     arcu dictum varius duis. Varius vel pharetra vel turpis nunc eget lorem dolor
                     sed. A iaculis at erat pellentesque adipiscing commodo elit.
                 </p>
+            </Card>
+
+            <Card title="Sponsors">
+                <p>We want to give a special shout-out 
+                    to our corporate sponsors who are 
+                    helping make our mission possible.
+                </p>
+
+                {sponsors.map(s => <SponsorCard {...s} />)}
             </Card>
         </main>
     );
