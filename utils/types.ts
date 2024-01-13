@@ -12,3 +12,12 @@ export interface IPerson {
     website: string;
     shouldPublish: boolean;
 }
+
+export interface IProject {
+    name: string;
+    company: string;
+    term: string;
+    overview: string;
+    video: string;
+    shouldPublish: boolean;
+}

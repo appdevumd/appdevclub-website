@@ -3,8 +3,9 @@ import styles from "./page.module.css";
 import Header from "@/components/Header";
 import { api } from "@/utils/api";
 import SponsorCard from "@/components/SponsorCard";
-import { IPerson, ISponsor } from "@/utils/types";
+import { IPerson, IProject, ISponsor } from "@/utils/types";
 import PersonCard from "@/components/PersonCard";
+import ProjectCard from "@/components/ProjectCard";
 
 export const getData = async () => {
     const sponsorsRes = await api.get("?target=sponsors");
@@ -13,11 +14,14 @@ export const getData = async () => {
     const peopleRes = await api.get("?target=leadership");
     const people: IPerson[] = await peopleRes.json();
 
-    return { sponsors, people };
+    const projectsRes = await api.get("?target=projects");
+    const projects: IProject[] = await projectsRes.json();
+
+    return { sponsors, people, projects };
 }
 
 export default async function Page() {
-    const { sponsors, people } = await getData();
+    const { sponsors, people, projects } = await getData();
 
     return (
         <main>
@@ -53,8 +57,8 @@ export default async function Page() {
             </Card>
 
             <Card title="Sponsors">
-                <p>We want to give a special shout-out 
-                    to our corporate sponsors who are 
+                <p>We want to give a special shout-out
+                    to our corporate sponsors who are
                     helping make our mission possible.
                 </p>
 
@@ -64,7 +68,17 @@ export default async function Page() {
             <Card title="People" style={{
                 textAlign: "center"
             }}>
-                {people.map(p => <PersonCard {...p} />)}
+                {people.filter(p => p.shouldPublish).map(p => <PersonCard {...p} />)}
+            </Card>
+
+            <Card title="Projects">
+                <p>Projects projects projects lorem ipsum.</p>
+
+                <div style={{
+                    textAlign: "center"
+                }}>
+                    {projects.filter(p => p.shouldPublish).map(p => <ProjectCard {...p} />)}
+                </div>
             </Card>
         </main>
     );

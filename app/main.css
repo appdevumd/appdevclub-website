@@ -8,11 +8,13 @@
     --blue: #0887FF;
     --purple: #925FE2;
     --text: rgb(67, 67, 67);
+    --muted: rgb(166, 166, 166);
     font-size: 16px;
 }
 
 * {
     color: var(--text);
+    box-sizing: border-box;
 }
 
 html {
@@ -23,7 +25,7 @@ html {
 
 body {
     max-width: 1024px;
-    background-color: whitesmoke;
+    background-color: white;
     flex: 1;
     min-height: 100vh;
     display: flex;
@@ -37,6 +39,7 @@ main {
 .btn {
     text-decoration: none;
     background: var(--purple);
+    color: white;
     padding: 0.25rem 0.75rem;
     font-weight: 600;
     font-size: 1rem;
@@ -49,4 +52,8 @@ hr {
     height: 0;
     border-top: whitesmoke 2px solid;
     margin: 0.75rem 0;
+}
+
+small {
+    color: var(--muted);
 }
