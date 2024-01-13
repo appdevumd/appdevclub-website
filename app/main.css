@@ -58,7 +58,7 @@ hr {
     margin: 0.75rem 0;
 }
 
-small {
+small, small * {
     color: var(--muted);
 }
 

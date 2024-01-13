@@ -11,10 +11,9 @@ const Navigation: React.FC<{}>= () => {
             <a href="#sponsors">Sponsors</a>
             <a href="#people">People</a>
             <a href="#projects">Projects</a>
-            <a>Events</a>
-            <a>Testimonials</a>
-            <a>Important Links</a>
-            <a>Contact Us</a>
+            <a href="#events">Events</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact-us">Contact Us</a>
         </nav>
     )
 }
