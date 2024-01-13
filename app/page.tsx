@@ -3,9 +3,10 @@ import styles from "./page.module.css";
 import Header from "@/components/Header";
 import { api } from "@/utils/api";
 import SponsorCard from "@/components/SponsorCard";
-import { IPerson, IProject, ISponsor } from "@/utils/types";
+import { IEvent, IPerson, IProject, ISponsor } from "@/utils/types";
 import PersonCard from "@/components/PersonCard";
 import ProjectCard from "@/components/ProjectCard";
+import Link from "next/link";
 
 export const getData = async () => {
     const sponsorsRes = await api.get("?target=sponsors");
@@ -17,11 +18,14 @@ export const getData = async () => {
     const projectsRes = await api.get("?target=projects");
     const projects: IProject[] = await projectsRes.json();
 
-    return { sponsors, people, projects };
+    const eventsRes = await api.get("?target=events");
+    const events: IEvent[] = await eventsRes.json();
+
+    return { sponsors, people, projects, events };
 }
 
 export default async function Page() {
-    const { sponsors, people, projects } = await getData();
+    const { sponsors, people, projects, events } = await getData();
 
     return (
         <main>
@@ -71,14 +75,34 @@ export default async function Page() {
                 {people.filter(p => p.shouldPublish).map(p => <PersonCard {...p} />)}
             </Card>
 
-            <Card title="Projects">
-                <p>Projects projects projects lorem ipsum.</p>
+            <Card title="Projects" style={{
+                textAlign: "center"
+            }}>
 
-                <div style={{
-                    textAlign: "center"
-                }}>
-                    {projects.filter(p => p.shouldPublish).map(p => <ProjectCard {...p} />)}
-                </div>
+                {projects.filter(p => p.shouldPublish).map(p => (
+                    <div className="inline-card">
+                        <h4>{p.name}</h4>
+                        <b><small>{p.term}</small></b>
+                        <small>In collaboration with {p.company}</small>
+
+                        <Link style={{ marginTop: "0.5rem" }} className={"btn"} href={`/project/${p.name}`}>
+                            Learn more
+                        </Link>
+                    </div>
+                ))}
+
+            </Card>
+
+            <Card title="Events" style={{
+                textAlign: "center"
+            }}>
+                {events.filter(e => e.shouldPublish).map(e => (
+                    <div className="inline-card">
+                        <h4>{e.name}</h4>
+                        <p><small>Where: {e.location}</small></p>
+                        <p><small>When: {e.dateTime}</small></p>
+                    </div>
+                ))}
             </Card>
         </main>
     );

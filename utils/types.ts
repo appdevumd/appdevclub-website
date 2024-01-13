@@ -21,3 +21,10 @@ export interface IProject {
     video: string;
     shouldPublish: boolean;
 }
+
+export interface IEvent {
+    name: string;
+    location: string;
+    dateTime: string;
+    shouldPublish: boolean;
+}
