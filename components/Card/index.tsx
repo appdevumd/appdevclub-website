@@ -1,11 +1,12 @@
-import { PropsWithChildren } from "react";
+import { CSSProperties, PropsWithChildren } from "react";
 import styles from "./styles.module.css"
 
 const Card: React.FC<PropsWithChildren<{
     title: string;
-}>>= ({ title, children }) => {
+    style?: CSSProperties
+}>>= ({ title, style, children }) => {
     return (
-        <div className={styles.card}>
+        <div className={styles.card} style={style}>
             <h2>{title}</h2>
             <hr />
             {children}

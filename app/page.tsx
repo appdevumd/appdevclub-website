@@ -3,20 +3,21 @@ import styles from "./page.module.css";
 import Header from "@/components/Header";
 import { api } from "@/utils/api";
 import SponsorCard from "@/components/SponsorCard";
+import { IPerson, ISponsor } from "@/utils/types";
+import PersonCard from "@/components/PersonCard";
 
 export const getData = async () => {
-    const res = await api.get("?target=sponsors");
-    const sponsors: ({
-        name: string;
-        tier: string;
-        logo: string;
-    })[] = await res.json();
+    const sponsorsRes = await api.get("?target=sponsors");
+    const sponsors: ISponsor[] = await sponsorsRes.json();
 
-    return { sponsors };
+    const peopleRes = await api.get("?target=leadership");
+    const people: IPerson[] = await peopleRes.json();
+
+    return { sponsors, people };
 }
 
 export default async function Page() {
-    const { sponsors } = await getData();
+    const { sponsors, people } = await getData();
 
     return (
         <main>
@@ -58,6 +59,12 @@ export default async function Page() {
                 </p>
 
                 {sponsors.map(s => <SponsorCard {...s} />)}
+            </Card>
+
+            <Card title="People" style={{
+                textAlign: "center"
+            }}>
+                {people.map(p => <PersonCard {...p} />)}
             </Card>
         </main>
     );

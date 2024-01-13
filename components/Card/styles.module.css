@@ -5,3 +5,7 @@
     border-radius: 20px;
     box-shadow: 5.21094px 5.21094px 31.2656px 5.21094px rgba(0, 0, 0, 0.08);
 }
+
+.card h2 {
+    text-align: center;
+}

@@ -1,11 +1,8 @@
 import { PropsWithChildren } from "react";
 import styles from "./styles.module.css"
+import { ISponsor } from "@/utils/types";
 
-const SponsorCard: React.FC<{
-    name: string;
-    tier: string;
-    logo: string;
-}>= ({ name, logo, tier }) => {
+const SponsorCard: React.FC<ISponsor>= ({ name, logo, tier }) => {
     return (
         <div className={styles.sponsor}>
             <img src={logo} alt={`${name} logo`} />
