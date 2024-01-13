@@ -6,7 +6,7 @@ const Card: React.FC<PropsWithChildren<{
     style?: CSSProperties
 }>>= ({ title, style, children }) => {
     return (
-        <div className={styles.card} style={style}>
+        <div id={title.split(" ").join("-").toLowerCase()} className={styles.card} style={style}>
             <h2>{title}</h2>
             <hr />
             {children}
