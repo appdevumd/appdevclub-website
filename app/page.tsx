@@ -94,6 +94,18 @@ export default async function Page() {
                     </div>
                 ))}
             </Card>
+
+            <Card title="Contact Us">
+                <p>
+                    Feel free to get in touch through the following methods:
+                </p>
+                <p>
+                    <b>Email:</b> umdappdev<small>[at]</small>gmail<small>[dot]</small>com
+                </p>
+                <p>
+                    <b>Discord <small><a target="blank" href="https://discord.com/invite/scSeVbTT7G">(join!)</a></small>:</b> Directly message anyone with a leadership role.
+                </p>
+            </Card>
         </main>
     );
 }
