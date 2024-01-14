@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useData } from "@/utils/data";
 
 export default async function Page() {
-    const { sponsors, people, projects, events } = await useData();
+    const { sponsors, people, projects, events, testimonials } = await useData();
 
     return (
         <main>
@@ -82,6 +82,15 @@ export default async function Page() {
                             <p><small><strong>Where:</strong> {e.location}</small></p>
                             <p><small><strong>When:</strong> {e.dateTime}</small></p>
                         </div>
+                    </div>
+                ))}
+            </Card>
+
+            <Card title="Testimonials">
+                {testimonials.map(t => (
+                    <div className="inline-card" style={{ textAlign: "center" }}>
+                        <h4>{t.name}</h4>
+                        <p>{t.testimonial}</p>
                     </div>
                 ))}
             </Card>

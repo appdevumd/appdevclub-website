@@ -1,6 +1,6 @@
 import { api } from "./api";
 import { sha256 } from "./hash";
-import { IEvent, ILeadership, IPerson, IProject, IProjectMember, ISponsor } from "./types";
+import { IEvent, ILeadership, IPerson, IProject, IProjectMember, ISponsor, ITestimonial } from "./types";
 
 let data = {} as any as {
     sponsors: ISponsor[];
@@ -8,6 +8,7 @@ let data = {} as any as {
     projects: IProject[];
     events: IEvent[];
     projectMembers: IProjectMember[];
+    testimonials: ITestimonial[];
 };
 
 let dataFetched = false;
@@ -19,6 +20,7 @@ export const useData = async () => {
         const projects = await api.get("projects").json<IProject[]>();
         const events = await api.get("events").json<IEvent[]>();
         const projectMembers = await api.get("project_members").json<IProjectMember[]>();
+        const testimonials = await api.get("testimonials").json<ITestimonial[]>();
 
         // Add image to project members:
         for (let pm of projectMembers) {
@@ -34,7 +36,8 @@ export const useData = async () => {
             people: people.filter(p => p.shouldPublish), 
             projects: projects.filter(p => p.shouldPublish), 
             events: events.filter(e => e.shouldPublish), 
-            projectMembers: projectMembers.filter(m => m.shouldPublish === "yes")
+            projectMembers: projectMembers.filter(m => m.shouldPublish === "yes"),
+            testimonials
         };
         dataFetched = true;
     }

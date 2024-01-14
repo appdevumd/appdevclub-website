@@ -39,3 +39,8 @@ export interface IProjectMember extends IPerson {
     gravatarEmail: string;
     shouldPublish: "yes" | "no";
 }
+
+export interface ITestimonial {
+    name: string;
+    testimonial: string;
+}
