@@ -78,3 +78,14 @@ a {
     text-decoration: none;
     color: var(--purple);
 }
+
+input, textarea {
+    border: 2px var(--blue) solid;
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+
+.btn:disabled {
+    background: var(--muted);
+}

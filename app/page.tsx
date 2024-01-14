@@ -86,13 +86,15 @@ export default async function Page() {
                 ))}
             </Card>
 
-            <Card title="Testimonials">
+            <Card title="Testimonials" style={{ textAlign: "center" }}>
                 {testimonials.map(t => (
                     <div className="inline-card" style={{ textAlign: "center" }}>
                         <h4>{t.name}</h4>
                         <p>{t.testimonial}</p>
                     </div>
                 ))}
+                <br /><br />
+                <Link href="/testimonial" className="btn">Write a testimonial</Link>
             </Card>
 
             <Card title="Contact Us">

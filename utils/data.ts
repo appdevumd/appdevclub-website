@@ -15,12 +15,14 @@ let dataFetched = false;
 
 export const useData = async () => {
     if (!dataFetched) {
-        const sponsors = await api.get("sponsors").json<ISponsor[]>();
-        const people = await api.get("leadership").json<ILeadership[]>();
-        const projects = await api.get("projects").json<IProject[]>();
-        const events = await api.get("events").json<IEvent[]>();
-        const projectMembers = await api.get("project_members").json<IProjectMember[]>();
-        const testimonials = await api.get("testimonials").json<ITestimonial[]>();
+        const sponsors = await api.get("?target=sponsors").json<ISponsor[]>();
+        const people = await api.get("?target=leadership").json<ILeadership[]>();
+        const projects = await api.get("?target=projects").json<IProject[]>();
+        const events = await api.get("?target=events").json<IEvent[]>();
+        const projectMembers = await api.get("?target=project_members").json<IProjectMember[]>();
+        const testimonials = await api.get("?target=testimonials").json<ITestimonial[]>();
+
+        console.log(testimonials)
 
         // Add image to project members:
         for (let pm of projectMembers) {

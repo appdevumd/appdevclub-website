@@ -1,4 +1,4 @@
-const BASE_URL = "https://script.google.com/macros/s/AKfycby9hJ55qmaAEgOdrXRvZxna3EoeBzDcuXMmgaxBL2uHGQZlW8_TZwywvsqgV38xPoVt/exec?target=";
+const BASE_URL = "https://script.google.com/macros/s/AKfycby7Y4vFoa0pNeaoJ2An65Y_N3yg-OrVxTvz8ba3rlZThw4gvSnS4eSJ81U4MXIHYM4W/exec";
 type Method = "get" | "post" | "patch" | "put" | "delete";
 
 const fetcherFn = (method: Method) => (endpoint: string, body?: object) => {
