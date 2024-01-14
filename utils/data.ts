@@ -1,30 +1,41 @@
 import { api } from "./api";
-import { IEvent, IPerson, IProject, ISponsor } from "./types";
+import { sha256 } from "./hash";
+import { IEvent, ILeadership, IPerson, IProject, IProjectMember, ISponsor } from "./types";
 
 let data = {} as any as {
     sponsors: ISponsor[];
-    people: IPerson[];
+    people: ILeadership[];
     projects: IProject[];
     events: IEvent[];
+    projectMembers: IProjectMember[];
 };
 
 let dataFetched = false;
 
 export const useData = async () => {
     if (!dataFetched) {
-        const sponsorsRes = await api.get("?target=sponsors");
-        const sponsors: ISponsor[] = await sponsorsRes.json();
+        const sponsors = await api.get("sponsors").json<ISponsor[]>();
+        const people = await api.get("leadership").json<ILeadership[]>();
+        const projects = await api.get("projects").json<IProject[]>();
+        const events = await api.get("events").json<IEvent[]>();
+        const projectMembers = await api.get("project_members").json<IProjectMember[]>();
 
-        const peopleRes = await api.get("?target=leadership");
-        const people: IPerson[] = await peopleRes.json();
+        // Add image to project members:
+        for (let pm of projectMembers) {
+            pm.image = `https://gravatar.com/avatar/${await sha256(pm.gravatarEmail)}`;
+        }
+        // Add image to leadership:
+        people.forEach(p => {
+            p.image = `https://ui-avatars.com/api/?name=${encodeURIComponent(p.name)}`;
+        });
 
-        const projectsRes = await api.get("?target=projects");
-        const projects: IProject[] = await projectsRes.json();
-
-        const eventsRes = await api.get("?target=events");
-        const events: IEvent[] = await eventsRes.json();
-
-        data = { sponsors, people, projects, events };
+        data = {
+            sponsors, 
+            people: people.filter(p => p.shouldPublish), 
+            projects: projects.filter(p => p.shouldPublish), 
+            events: events.filter(e => e.shouldPublish), 
+            projectMembers: projectMembers.filter(m => m.shouldPublish === "yes")
+        };
         dataFetched = true;
     }
 

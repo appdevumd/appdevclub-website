@@ -1,9 +1,7 @@
 import Card from "@/components/Card";
 import styles from "./page.module.css";
 import Header from "@/components/Header";
-import { api } from "@/utils/api";
 import SponsorCard from "@/components/SponsorCard";
-import { IEvent, IPerson, IProject, ISponsor } from "@/utils/types";
 import PersonCard from "@/components/PersonCard";
 import Link from "next/link";
 import { useData } from "@/utils/data";
@@ -13,10 +11,7 @@ export default async function Page() {
 
     return (
         <main>
-            <Header>
-                <h1>App Dev Club</h1>
-                <p>At the University of Maryland</p>
-
+            <Header title="App Dev Club" subtitle="At the University of Maryland">
                 <div className={styles.headerBtns}>
                     <a className="btn" target="blank" href="https://discord.com/invite/scSeVbTT7G">Chat with us on Discord</a>
                     <a className="btn" href="https://www.instagram.com/appdev_umd">Follow us on Instagram</a>
@@ -56,20 +51,20 @@ export default async function Page() {
             <Card title="People" style={{
                 textAlign: "center"
             }}>
-                {people.filter(p => p.shouldPublish).map(p => <PersonCard {...p} />)}
+                {people.map(p => <PersonCard {...p} />)}
             </Card>
 
             <Card title="Projects" style={{
                 textAlign: "center"
             }}>
 
-                {projects.filter(p => p.shouldPublish).map(p => (
+                {projects.map(p => (
                     <div className="inline-card">
                         <h4>{p.name}</h4>
                         <b><small>{p.term}</small></b>
                         <small>In collaboration with {p.company}</small>
 
-                        <Link style={{ marginTop: "0.5rem" }} className={"btn"} href={`/project/${p.name}`}>
+                        <Link style={{ marginTop: "0.5rem" }} className={"btn"} href={`/project/${p.company}`}>
                             Learn more
                         </Link>
                     </div>
@@ -80,7 +75,7 @@ export default async function Page() {
             <Card title="Events" style={{
                 textAlign: "center"
             }}>
-                {events.filter(e => e.shouldPublish).map(e => (
+                {events.map(e => (
                     <div className="inline-card">
                         <h4>{e.name}</h4>
                         <div style={{ textAlign: "left" }}>

@@ -4,15 +4,6 @@ export interface ISponsor {
     logo: string;
 }
 
-export interface IPerson {
-    name: string;
-    role: string;
-    github: string;
-    linkedin: string;
-    website: string;
-    shouldPublish: boolean;
-}
-
 export interface IProject {
     name: string;
     company: string;
@@ -27,4 +18,24 @@ export interface IEvent {
     location: string;
     dateTime: string;
     shouldPublish: boolean;
+}
+
+export interface IPerson {
+    name: string;
+    role: string;
+    image: string;
+}
+
+export interface ILeadership extends IPerson {
+    github: string;
+    linkedin: string;
+    website: string;
+    shouldPublish: boolean;
+}
+
+export interface IProjectMember extends IPerson {
+    project: string;
+    term: string;
+    gravatarEmail: string;
+    shouldPublish: "yes" | "no";
 }
