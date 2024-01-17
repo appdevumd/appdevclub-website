@@ -21,21 +21,10 @@ export default async function Page() {
 
             <Card title="About Us">
                 <p>
-                    App Dev Club is a group of students at UMD who have a burning
-                    desire to develop software. Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                    ut labore et dolore magna aliqua. Malesuada proin libero nunc
-                    consequat interdum varius sit amet mattis. Sit amet luctus
-                    venenatis lectus magna fringilla urna porttitor rhoncus.
-                    Molestie a iaculis at erat pellentesque adipiscing commodo
-                    elit at. Convallis posuere morbi leo urna molestie at. Quis enim
-                    lobortis scelerisque fermentum dui faucibus in ornare. Mi tempus
-                    imperdiet nulla malesuada pellentesque elit eget. Orci nulla pellentesque
-                    dignissim enim sit amet venenatis urna. Consequat id porta nibh venenatis
-                    cras sed felis eget velit. Non blandit massa enim nec dui nunc. Risus commodo
-                    viverra maecenas accumsan lacus vel. Lobortis feugiat vivamus at augue eget
-                    arcu dictum varius duis. Varius vel pharetra vel turpis nunc eget lorem dolor
-                    sed. A iaculis at erat pellentesque adipiscing commodo elit.
+                    App Dev Club a club at UMD that prepares students for industry software development.
+                    Our student teams develop software for Fortune 500 companies that is being used every
+                    day. We also have a bootcamp to bring students up to speed on industry standard 
+                    technologies and to connect them with career mentors.
                 </p>
             </Card>
 

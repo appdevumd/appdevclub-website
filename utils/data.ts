@@ -22,8 +22,6 @@ export const useData = async () => {
         const projectMembers = await api.get("?target=project_members").json<IProjectMember[]>();
         const testimonials = await api.get("?target=testimonials").json<ITestimonial[]>();
 
-        console.log(testimonials)
-
         // Add image to project members:
         for (let pm of projectMembers) {
             pm.image = `https://gravatar.com/avatar/${await sha256(pm.gravatarEmail)}`;
@@ -41,7 +39,7 @@ export const useData = async () => {
             projectMembers: projectMembers.filter(m => m.shouldPublish === "yes"),
             testimonials
         };
-        dataFetched = true;
+        // dataFetched = true;
     }
 
     return data;

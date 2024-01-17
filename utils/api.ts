@@ -8,6 +8,7 @@ const fetcherFn = (method: Method) => (endpoint: string, body?: object) => {
             "Content-Type": "application/json"
         },
         body: typeof body === "object" ? JSON.stringify(body) : undefined,
+        next: { revalidate: 60 }
     });
 
     return {
