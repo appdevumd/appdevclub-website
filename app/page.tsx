@@ -53,7 +53,7 @@ export default async function Page() {
                         <b><small>{p.term}</small></b>
                         <small>In collaboration with {p.company}</small>
 
-                        <Link style={{ marginTop: "0.5rem" }} className={"btn"} href={`/project/${p.company}`}>
+                        <Link style={{ marginTop: "0.5rem" }} className={"btn"} href={`/project/${p.company}`} target="_blank" rel="noopener noreferrer">
                             Learn more
                         </Link>
                     </div>
