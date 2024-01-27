@@ -21,12 +21,12 @@
 html {
     display: flex;
     justify-content: center;
-    background: var(--blue);
+    /* background: var(--blue); */
     overflow-y: hidden;
 }
 
 body {
-    max-width: 1024px;
+    /* max-width: 1024px; */
     background-color: white;
     flex: 1;
     min-height: 100vh;

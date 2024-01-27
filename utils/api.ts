@@ -1,14 +1,12 @@
-const BASE_URL = "https://script.google.com/macros/s/AKfycby7Y4vFoa0pNeaoJ2An65Y_N3yg-OrVxTvz8ba3rlZThw4gvSnS4eSJ81U4MXIHYM4W/exec";
+const BASE_URL = "https://script.google.com/macros/s/AKfycbwQAccIFOSSu_MI32o6lmkCXu5qHpyJlUpZ2-0teZY-xgvRNuScXEjrMKN6Yg2K0Vks/exec";
 type Method = "get" | "post" | "patch" | "put" | "delete";
 
 const fetcherFn = (method: Method) => (endpoint: string, body?: object) => {
+    let res_options = endpoint.includes('create_testimonial') ? { cache: 'no-store' } : { revalidate: 600 };
     const res = fetch(`${BASE_URL}${endpoint}`, {
         method,
-        headers: {
-            "Content-Type": "application/json"
-        },
         body: typeof body === "object" ? JSON.stringify(body) : undefined,
-        next: { revalidate: 60 }
+        next: res_options
     });
 
     return {

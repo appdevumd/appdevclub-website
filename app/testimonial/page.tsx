@@ -4,24 +4,67 @@ import Header from "@/components/Header";
 import Card from "@/components/Card";
 import { useState } from "react";
 import { api } from "@/utils/api";
+import { useEffect } from "react";
+
+interface SuccessMessageProps {
+    show: boolean;
+  }
+  
+  function SuccessMessage({ show }: SuccessMessageProps) {
+    const [isVisible, setIsVisible] = useState(show);
+  
+    useEffect(() => {
+      setIsVisible(show);
+      if (show) {
+        const timer = setTimeout(() => {
+          setIsVisible(false);
+        }, 3000);
+    
+        return () => clearTimeout(timer);
+      }
+    }, [show]);
+    
+  
+    const messageStyles: React.CSSProperties = {
+      position: 'fixed',
+      bottom: '20px',
+      right: '20px',
+      backgroundColor: '#4CAF50',
+      color: '#fff',
+      padding: '10px 20px',
+      borderRadius: '5px',
+      boxShadow: '0 0 10px rgba(0, 0, 0, 0.2)',
+      opacity: isVisible ? 1 : 0,
+      transition: 'opacity 0.3s ease-in-out',
+      zIndex: 10000,
+    };
+  
+    return (
+      <div style={messageStyles} className={`success-message ${isVisible ? 'visible' : ''}`}>
+        Thanks for leaving a testimonial!
+      </div>
+    );
+  }
 
 export default function Page() {
     const [name, setName] = useState("");
     const [testimonial, setTestimonial] = useState("");
+    const [submitted, setSubmitted] = useState(false);
 
-    const submitForm = () => api.post("", {
-        name,
-        testimonial
-    })
-        .text()
-        .then(t => alert(t));
+    const submitForm = () => api.get(`?target=create_testimonial&name=${encodeURIComponent(name)}&testimonial=${encodeURIComponent(testimonial)}`)
+            .text()
+            .then((t) => {
+                setSubmitted(true);
+                setName('');
+                setTestimonial('');
+            });
 
     return (
         <main>
             <Header title="Write a testimonial" subtitle={`Let us know what you think!`} />
 
             <Card title="Testimonial Form">
-                <form onSubmit={e => {
+                <form id="testimonial_form" onSubmit={e => {
                     e.preventDefault();
                     submitForm();
                 }}>
@@ -49,6 +92,7 @@ export default function Page() {
                         Submit!
                     </button>
                 </form>
+                <SuccessMessage show={submitted} />
             </Card>   
         </main>
     );
